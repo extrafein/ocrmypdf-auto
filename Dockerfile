@@ -4,6 +4,7 @@ FROM base as builder
 
 ENV LANG=C.UTF-8
 
+# Build jbig2
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         autoconf \
@@ -17,7 +18,6 @@ RUN apt-get update \
     && mkdir src \
     && cd src \
     && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
-#    && curl -L https://github.com/agl/jbig2enc/archive/ea6a40a2cbf05efb00f3418f2d0ad71232565beb.tar.gz --output jbig2.tgz \
     && tar xzf jbig2.tgz --strip-components=1 \
     && ./autogen.sh \
     && ./configure \
@@ -30,25 +30,21 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-#        ocrmypdf \
-#        ghostscript \
         ghostscript \
         icc-profiles-free \
         libxml2 \
         pngquant \
         python3-pip \
-        tesseract-ocr \
         zlib1g \
-#        gosu \
-#        liblept5 \
-#        pngquant \
-        python3-venv \
-#        python3-pip \
-#        qpdf \
-#        tesseract-ocr \
-        tesseract-ocr-eng \
-        tesseract-ocr-deu \
-#        tesseract-ocr-osd \
+       gosu \
+       liblept5 \
+       pngquant \
+       python3-venv \
+       qpdf \
+        tesseract-ocr \
+       tesseract-ocr-eng \
+       tesseract-ocr-deu \
+       tesseract-ocr-osd \
 #        unpaper \
     && rm -rf /var/lib/apt/lists/*
 
