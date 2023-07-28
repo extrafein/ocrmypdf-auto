@@ -51,6 +51,7 @@ RUN python3 -m venv --system-site-packages /appenv \
 
 # Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
+
 COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
 # Pull in ocrmypdf via requirements.txt and install pinned version
