@@ -31,7 +31,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ocrmypdf \
  #       ghostscript \
- #       gosu \
+        gosu \
  #       liblept5 \
         pngquant \
         python3-venv \
