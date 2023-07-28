@@ -1,4 +1,4 @@
-FROM ubuntu:bookworm-slim as base
+FROM debian:bookworm-slim as base
 
 FROM base as builder
 
