@@ -30,6 +30,7 @@ ENV LANG=C.UTF-8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ocrmypdf \
+        jbig2enc \
         ghostscript \
         gosu \
         liblept5 \
