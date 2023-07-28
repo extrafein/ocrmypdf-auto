@@ -30,23 +30,31 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        ocrmypdf \
+#        ocrmypdf \
+#        ghostscript \
         ghostscript \
-        gosu \
-        liblept5 \
+        icc-profiles-free \
+        libxml2 \
         pngquant \
-        python3-venv \
         python3-pip \
-        qpdf \
         tesseract-ocr \
+        zlib1g
+        gosu \
+#        liblept5 \
+#        pngquant \
+        python3-venv \
+#        python3-pip \
+#        qpdf \
+#        tesseract-ocr \
         tesseract-ocr-eng \
-        tesseract-ocr-osd \
-        unpaper \
+        tesseract-ocr-deu \
+#        tesseract-ocr-osd \
+#        unpaper \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
-    && pip install --upgrade pip requests plumbum watchdog
+    && pip install --upgrade pip requests plumbum watchdog ocrmypdf
 
 # Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
