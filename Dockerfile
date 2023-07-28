@@ -57,10 +57,10 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
 # Pull in ocrmypdf via requirements.txt and install pinned version
-#COPY src/requirements.txt /app/
+COPY src/requirements.txt /app/
 
-#RUN . /appenv/bin/activate; \
-#    pip install -r /app/requirements.txt
+RUN . /appenv/bin/activate; \
+    pip install -r /app/requirements.txt
 
 COPY src/ /app/
 
