@@ -38,8 +38,8 @@ RUN apt-get update && \
         pngquant \
         python3-pip \
         tesseract-ocr \
-        zlib1g
-        gosu \
+        zlib1g \
+#        gosu \
 #        liblept5 \
 #        pngquant \
         python3-venv \
