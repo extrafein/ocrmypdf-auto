@@ -53,13 +53,7 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
 COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
-# Pull in ocrmypdf via requirements.txt and install pinned version
 COPY src/ /app/
-#COPY src/requirements.txt /app/
-
-#RUN . /appenv/bin/activate; \
-#    pip install -r /app/requirements.txt
-
 
 # Create restricted privilege user docker:docker to drop privileges
 # to later. We retain root for the entrypoint in order to install
