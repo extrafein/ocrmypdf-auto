@@ -30,9 +30,9 @@ ENV LANG=C.UTF-8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ocrmypdf \
- #       ghostscript \
+        ghostscript \
         gosu \
- #       liblept5 \
+        liblept5 \
         pngquant \
         python3-venv \
         python3-pip \
@@ -40,7 +40,7 @@ RUN apt-get update && \
         tesseract-ocr \
         tesseract-ocr-eng \
         tesseract-ocr-deu \
-#        tesseract-ocr-osd \
+        tesseract-ocr-osd \
         unpaper \
     && rm -rf /var/lib/apt/lists/*
 
