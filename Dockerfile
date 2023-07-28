@@ -16,7 +16,8 @@ RUN apt-get update \
         zlib1g-dev \
     && mkdir src \
     && cd src \
-    && curl -L https://github.com/agl/jbig2enc/archive/ea6a40a2cbf05efb00f3418f2d0ad71232565beb.tar.gz --output jbig2.tgz \
+    && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
+#    && curl -L https://github.com/agl/jbig2enc/archive/ea6a40a2cbf05efb00f3418f2d0ad71232565beb.tar.gz --output jbig2.tgz \
     && tar xzf jbig2.tgz --strip-components=1 \
     && ./autogen.sh \
     && ./configure \
@@ -48,9 +49,9 @@ RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
     && pip install --upgrade pip requests plumbum watchdog
 
-# Copy jbig2 from builder image
-#COPY --from=builder /usr/local/bin/ /usr/local/bin/
-#COPY --from=builder /usr/local/lib/ /usr/local/lib/
+Copy jbig2 from builder image
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
+COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
 # Pull in ocrmypdf via requirements.txt and install pinned version
 #COPY src/requirements.txt /app/
