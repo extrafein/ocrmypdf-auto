@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as base
+FROM ubuntu:bookworm-slim as base
 
 FROM base as builder
 
@@ -29,6 +29,7 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        ocrmypdf \
         ghostscript \
         gosu \
         liblept5 \
@@ -51,10 +52,10 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
 # Pull in ocrmypdf via requirements.txt and install pinned version
-COPY src/requirements.txt /app/
+#COPY src/requirements.txt /app/
 
-RUN . /appenv/bin/activate; \
-    pip install -r /app/requirements.txt
+#RUN . /appenv/bin/activate; \
+#    pip install -r /app/requirements.txt
 
 COPY src/ /app/
 
