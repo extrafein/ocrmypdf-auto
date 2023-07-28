@@ -36,12 +36,12 @@ RUN apt-get update && \
         pngquant \
         python3-venv \
         python3-pip \
- #       qpdf \
-#        tesseract-ocr \
+        qpdf \
+        tesseract-ocr \
         tesseract-ocr-eng \
         tesseract-ocr-deu \
 #        tesseract-ocr-osd \
-#        unpaper \
+        unpaper \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv --system-site-packages /appenv \
