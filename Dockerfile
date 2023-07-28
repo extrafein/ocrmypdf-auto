@@ -48,7 +48,7 @@ RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
     && pip install --upgrade pip requests plumbum watchdog
 
-Copy jbig2 from builder image
+# Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY --from=builder /usr/local/lib/ /usr/local/lib/
 
