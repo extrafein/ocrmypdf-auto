@@ -46,7 +46,7 @@ RUN apt-get update && \
 
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
-    && pip install --upgrade pip requests plumbum watchdog
+    && pip install --upgrade pip requests plumbum watchdog ocrmypdf
 
 # Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
