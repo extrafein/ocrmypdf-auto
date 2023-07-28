@@ -17,7 +17,8 @@ RUN apt-get update \
         zlib1g-dev \
     && mkdir src \
     && cd src \
-    && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
+    && curl -L https://github.com/agl/jbig2enc/archive/ea6a40a2cbf05efb00f3418f2d0ad71232565beb.tar.gz --output jbig2.tgz \
+    #&& curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
     && tar xzf jbig2.tgz --strip-components=1 \
     && ./autogen.sh \
     && ./configure \
