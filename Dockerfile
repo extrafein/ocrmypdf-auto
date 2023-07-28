@@ -40,6 +40,7 @@ RUN apt-get update && \
         qpdf \
         tesseract-ocr \
         tesseract-ocr-eng \
+        tesseract-ocr-deu \
         tesseract-ocr-osd \
         unpaper \
     && rm -rf /var/lib/apt/lists/*
@@ -47,7 +48,7 @@ RUN apt-get update && \
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
     && pip install --upgrade pip
-#    && pip install --upgrade requests plumbum watchdog ocrmypdf
+    && pip install --upgrade requests plumbum watchdog ocrmypdf
 
 # Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
