@@ -442,7 +442,7 @@ class AutoOcrScheduler(object):
                 break
             config_path = config_path.parent.parent / '.ocr.config'
 
-        config_path = self.config_dir / '.ocr.config'
+        config_path = self.config_dir / 'ocr.config'
         if config_path.exists():
             return config_path
         return None
