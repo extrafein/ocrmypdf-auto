@@ -14,7 +14,7 @@ RUN apk add --no-cache \
         libtool \
         zlib-dev \
     && mkdir src \
-    && cd src \e
+    && cd src \
     && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
     && tar xzf jbig2.tgz --strip-components=1 \
     && ./autogen.sh \
