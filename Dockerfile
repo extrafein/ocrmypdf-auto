@@ -10,7 +10,7 @@ RUN apk add --no-cache \
         build-base \
         ca-certificates \
         curl \
-        libleptonica-dev \
+        leptonica-dev \
         libtool \
         zlib-dev \
     && mkdir src \
