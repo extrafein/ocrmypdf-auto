@@ -26,13 +26,10 @@ FROM base
 
 ENV LANG=C.UTF-8
 
-RUN ARCH=$(apk --print-arch) && \
-    curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-$ARCH" && \
-    chmod +x /usr/local/bin/gosu
-
 RUN apk add --no-cache \
         ocrmypdf \
         ghostscript \
+        curl \
         #gosu \
         leptonicae \
         pngquant \
@@ -43,8 +40,11 @@ RUN apk add --no-cache \
         tesseract-ocr-data-eng \
         tesseract-ocr-data-deu \
         tesseract-ocr-data-osd \
-        unpaper \
-    && rm -rf /var/lib/apt/lists/*
+        unpaper
+        
+RUN ARCH=$(apk --print-arch) && \
+    curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-$ARCH" && \
+    chmod +x /usr/local/bin/gosu
 
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
