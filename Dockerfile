@@ -10,17 +10,19 @@ RUN apk add --no-cache \
         build-base \
         ca-certificates \
         curl \
-        leptonica-dev \
         libtool \
+        #leptonica-dev \
         zlib-dev
 
 # Create the necessary directories
 RUN mkdir src
 WORKDIR /src
 
+# Download and extract leptonica source
+RUN curl -L https://github.com/DanBloomberg/leptonica/archive/master.tar.gz | tar xz --strip-components=1
+    
 # Download and extract jbig2enc source
-RUN curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz && \
-    tar xzf jbig2.tgz --strip-components=1
+RUN curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz | tar xz --strip-components=1
 
 # Build and install jbig2enc
 RUN ./autogen.sh && \
