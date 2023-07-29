@@ -31,9 +31,9 @@ RUN apk add --no-cache \
         ghostscript \
         curl \
         #gosu \
-        leptonicae \
+        leptonica \
         pngquant \
-        py3-venv \
+        python3 \
         py3-pip \
         qpdf \
         tesseract-ocr \
