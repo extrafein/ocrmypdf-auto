@@ -434,15 +434,15 @@ class AutoOcrScheduler(object):
 
     def _get_config_path(self, input_path):
         assert (input_path - self.input_dir)[0] != '..'
-        config_path = input_path.parent / 'ocr.config'
+        config_path = input_path.parent / '.ocr.config'
         while True:
             if config_path.exists():
                 return config_path
             if config_path.parent == self.input_dir:
                 break
-            config_path = config_path.parent.parent / 'ocr.config'
+            config_path = config_path.parent.parent / '.ocr.config'
 
-        config_path = self.config_dir / 'ocr.config'
+        config_path = self.config_dir / '.ocr.config'
         if config_path.exists():
             return config_path
         return None
