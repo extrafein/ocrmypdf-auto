@@ -26,11 +26,15 @@ FROM base
 
 ENV LANG=C.UTF-8
 
+RUN ARCH=$(apk --print-arch) && \
+    curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-$ARCH" && \
+    chmod +x /usr/local/bin/gosu
+
 RUN apk add --no-cache \
         ocrmypdf \
         ghostscript \
-        gosu \
-        liblept5 \
+        #gosu \
+        leptonicae \
         pngquant \
         py3-venv \
         py3-pip \
