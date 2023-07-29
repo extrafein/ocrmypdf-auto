@@ -1,4 +1,4 @@
-FROM alipine:latest as base
+FROM alpine:latest as base
 
 FROM base as builder
 
