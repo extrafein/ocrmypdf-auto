@@ -4,17 +4,17 @@ FROM base as builder
 
 ENV LANG=C.UTF-8
 
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
         autoconf \
         automake \
-        build-essential \
+        build-base \
         ca-certificates \
         curl \
         libleptonica-dev \
         libtool \
-        zlib1g-dev \
+        zlib-dev \
     && mkdir src \
-    && cd src \
+    && cd src \e
     && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
     && tar xzf jbig2.tgz --strip-components=1 \
     && ./autogen.sh \
@@ -26,19 +26,19 @@ FROM base
 
 ENV LANG=C.UTF-8
 
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
         ocrmypdf \
         ghostscript \
         gosu \
         liblept5 \
         pngquant \
-        python3-venv \
-        python3-pip \
+        py3-venv \
+        py3-pip \
         qpdf \
         tesseract-ocr \
-        tesseract-ocr-eng \
-        tesseract-ocr-deu \
-        tesseract-ocr-osd \
+        tesseract-ocr-data-eng \
+        tesseract-ocr-data-deu \
+        tesseract-ocr-data-osd \
         unpaper \
     && rm -rf /var/lib/apt/lists/*
 
