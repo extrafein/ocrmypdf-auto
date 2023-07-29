@@ -42,8 +42,7 @@ RUN apk add --no-cache \
         tesseract-ocr-data-osd \
         unpaper
         
-RUN ARCH=$(apk --print-arch) && \
-    curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-$ARCH" && \
+RUN curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-amd64" && \
     chmod +x /usr/local/bin/gosu
 
 RUN python3 -m venv --system-site-packages /appenv \
