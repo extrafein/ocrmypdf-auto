@@ -4,7 +4,7 @@ FROM base as builder
 
 ENV LANG=C.UTF-8
 
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
         autoconf \
         automake \
         build-essential \
@@ -26,7 +26,7 @@ FROM base
 
 ENV LANG=C.UTF-8
 
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
         ocrmypdf \
         ghostscript \
         gosu \
