@@ -1,61 +1,62 @@
-FROM alpine:latest as base
+FROM debian:bookworm-slim as base
+
+############# BASE - Builder
 
 FROM base as builder
 
 ENV LANG=C.UTF-8
 
-RUN apk add --no-cache \
+# download binaries, compile-sources and libraries
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
         autoconf \
         automake \
-        build-base \
+        build-essential \
         ca-certificates \
         curl \
+        libleptonica-dev \
         libtool \
-        #leptonica-dev \
-        zlib-dev
+        zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Create the necessary directories # Download and extract leptonica source
+# create source working directory
 RUN mkdir src
 WORKDIR /src
-RUN curl -L https://github.com/DanBloomberg/leptonica/archive/master.tar.gz | tar xz --strip-components=1
-RUN ./autogen.sh && \
-    ./configure CPPFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" && \
-    make && \
-    make install
-RUN rm -rf /src
-    
-# Download and extract jbig2enc source
-RUN mkdir src
-WORKDIR /src
+
+# download latest jbig2enc source
 RUN curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz | tar xz --strip-components=1
+
+# compile jbig2enc
 RUN ./autogen.sh && \
     ./configure CPPFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" && \
     make && \
     make install
+
+# remove source
 RUN rm -rf /src
+
+############# BASE
 
 FROM base
 
 ENV LANG=C.UTF-8
 
-RUN apk add --no-cache \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
         ocrmypdf \
         ghostscript \
-        curl \
-        #gosu \
-        leptonica \
+        gosu \
+        liblept5 \
         pngquant \
-        python3 \
-        py3-pip \
+        python3-venv \
+        python3-pip \
         qpdf \
         tesseract-ocr \
-        tesseract-ocr-data-eng \
-        tesseract-ocr-data-deu \
-        tesseract-ocr-data-osd \
-        unpaper
-        
-RUN curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.14/gosu-amd64" && \
-    chmod +x /usr/local/bin/gosu
+        tesseract-ocr-eng \
+        tesseract-ocr-deu \
+        tesseract-ocr-osd \
+        unpaper \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
