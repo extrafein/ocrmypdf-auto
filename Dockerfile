@@ -43,7 +43,6 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        ocrmypdf \
         ghostscript \
         gosu \
         liblept5 \
@@ -61,7 +60,7 @@ RUN apt-get update && \
 RUN python3 -m venv --system-site-packages /appenv \
     && . /appenv/bin/activate \
     && pip install --upgrade pip \
-    && pip install --upgrade requests plumbum watchdog
+    && pip install --upgrade ocrmypdf requests plumbum watchdog
 
 # Copy jbig2 from builder image
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
