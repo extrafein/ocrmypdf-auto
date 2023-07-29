@@ -1,3 +1,9 @@
+Forked this work to:
+* Changed the base image to debian:bookworm-slim to get smaller docker image
+* Removed version pinning to get newest versions of software
+
+---
+
 ![ocrmypdf-auto logo](https://raw.githubusercontent.com/cmccambridge/ocrmypdf-auto/master/media/logo.png)
 
 # cmccambridge/ocrmypdf-auto
