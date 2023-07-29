@@ -12,15 +12,21 @@ RUN apk add --no-cache \
         curl \
         leptonica-dev \
         libtool \
-        zlib-dev \
-    && mkdir src \
-    && cd src \
-    && curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz \
-    && tar xzf jbig2.tgz --strip-components=1 \
-    && ./autogen.sh \
-    && ./configure \
-    && make \
-    && make install
+        zlib-dev
+
+# Create the necessary directories
+RUN mkdir src
+WORKDIR /src
+
+# Download and extract jbig2enc source
+RUN curl -L https://github.com/agl/jbig2enc/archive/refs/tags/0.29.tar.gz --output jbig2.tgz && \
+    tar xzf jbig2.tgz --strip-components=1
+
+# Build and install jbig2enc
+RUN ./autogen.sh && \
+    ./configure CPPFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" && \
+    make && \
+    make install
 
 FROM base
 
