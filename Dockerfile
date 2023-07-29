@@ -1,11 +1,10 @@
-FROM debian:bookworm-slim as base
+FROM alipine:latest as base
 
 FROM base as builder
 
 ENV LANG=C.UTF-8
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
         autoconf \
         automake \
         build-essential \
@@ -27,8 +26,7 @@ FROM base
 
 ENV LANG=C.UTF-8
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
         ocrmypdf \
         ghostscript \
         gosu \
